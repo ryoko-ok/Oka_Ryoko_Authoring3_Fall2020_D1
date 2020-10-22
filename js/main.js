@@ -1,14 +1,6 @@
+import { fetchData } from "./modules/DataMiner.js";
+
 (() => {
-
-    fetch('./DataSet.json')
-        .then(res => res.json()) // parse the JSON (translate) back to plain JS
-        .then(data => {
-            // this is our data (DataSet.json)
-            // converted to a plain JavaScript object
-            handleDataSet(data);
-        })
-    .catch((error) => console.log(error));
-
     // this receives the data payload from our AJAX request, parses it (turns the returned JSON object back into a plain JavaScript object) and renders the data to our view (the markup in index.html)
     function handleDataSet(data) {
         // let myData = JSON.parse(data),
@@ -23,14 +15,19 @@
             let currentUser = userTemplate.cloneNode(true),
                 currentUserText = currentUser.querySelector('.user').children;
 
-            currentUserText[1].textContent = data[user].name;
-            currentUserText[2].textContent = data[user].role;
-            currentUserText[3].textContent = data[user].nickname;
+            currentUserText[1].src = `images/${data[user].avatar}.jpg`;
+            currentUserText[2].textContent = data[user].name;
+            currentUserText[3].textContent = data[user].role;
+            currentUserText[4].textContent = data[user].nickname;
 
             // add this new user to the view
             userSection.appendChild(currentUser);
         }
 
         console.log(data);
+
+        fetchData('./DataSet.json').then(data => handleDataSet(data)).catch(err => console.log(err));
+        fetchData('./AnotherDataSet.json').then(data => handleDataSet(data)).catch(err => console.log(err));
     }
+
 })();
