@@ -1,7 +1,7 @@
-<?php 
-    $db_dsn = array( 
+<?php
+    $db_dsn = array(
         'host' => 'localhost',
-        'dbname' => 'IDP_ProfData',
+        'dbname' => 'profdata',
         'charset' => 'utf8'
     );
 
@@ -10,14 +10,14 @@
     //This is the DB credentials
 
     $db_user = 'root';
-    $db_pass = 'hopalong';
+    $db_pass = 'root';
 
-    try{
+    try {
         $pdo = new PDO($dsn, $db_user, $db_pass);
         // var_dump($pdo);
         // --[echo] (in this case) is almost like console.log
         // echo "you're in! enjoy the show";
-    } catch (PDOException $exception){
+    } catch (PDOException $exception) {
         echo 'Connection Error:'.$exception->getMessage();
         exit();
     }

@@ -2,7 +2,7 @@
     include("connect.php");
     include("functions.php");
 
-    if(isset($_GET["id"])) {
+    if (isset($_GET["id"])) {
         $targetID = $_GET["id"];
         $result = getSingleUser($pdo, $targetID);
 
